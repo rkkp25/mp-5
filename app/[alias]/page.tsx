@@ -5,7 +5,7 @@ import { useRouter, useParams } from 'next/navigation'
 
 
 
-export default function AliasPreview({alias}: {alias: AliasProps }) {
+export function AliasPreview({alias}: {alias: AliasProps }) {
     // function goToLink(alias: AliasProps) {
     //     redirect.push('{alias.url}')
     // }
