@@ -1,7 +1,6 @@
 "use server";
 import getCollection, { ALIAS_COLLECTION } from "@/db";
 import { AliasProps } from "@/types";
-import { NotExists } from "@/components/NotExists";
 
 export default async function createNewPost (
     url: string, 
