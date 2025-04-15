@@ -1,3 +1,5 @@
+"use client";
+
 import { AliasProps } from "@/types";
 import { useRouter, useParams } from 'next/navigation'
 
