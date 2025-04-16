@@ -7,7 +7,7 @@ import { useState } from "react";
 export default function NewAliasForm({
     append,
 }: {
-append: (newAlias: AliasProps) => void;
+append: (newAlias: AliasProps | null) => void;
 }) {
     const [url, setUrl] = useState("");
     const [alias, setAlias] = useState("");

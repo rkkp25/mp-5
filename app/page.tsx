@@ -7,8 +7,10 @@ import { useState } from "react";
 export default function Home() {
   const [alias, setAlias] = useState<AliasProps[]>([]);
 
-  function append(newAlias: AliasProps) {
-    setAlias([newAlias]);
+  function append(newAlias: AliasProps | null) {
+      if (newAlias) {
+          setAlias([newAlias]);
+      }
   }
 
   return (

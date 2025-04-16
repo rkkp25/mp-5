@@ -5,18 +5,17 @@ import { AliasProps } from "@/types";
 export default async function createNewAlias (
     url: string, 
     alias: string,
-): Promise<AliasProps> {
+): Promise<AliasProps | null> {
     console.log("creating new post");
 
 
-    const baseURL = "https://mp-5-pi.vercel.app/";
-    const shortURL = `${baseURL}${alias}`;
-    console.log(shortURL);
+    // const baseURL = "https://mp-5-pi.vercel.app/";
+    // const shortURL = `${baseURL}${alias}`;
+    // console.log(shortURL);
 
     const p = {
         url: url,
         alias: alias,
-        shortURL: shortURL,
     };
 
     // FROM STACK OVERFLOW: https://stackoverflow.com/questions/74497502/how-to-check-for-a-valid-url-in-javascript
@@ -27,15 +26,17 @@ export default async function createNewAlias (
             '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // validate port and path
             '(\\?[;&a-z\\d%_.~+=-]*)?' + // validate query string
             '(\\#[-a-z\\d_]*)?$', 'i'); // validate fragment locator
-        return urlPattern.test(url);
+        return !!urlPattern.test(url);
     }
+
+    // try catch - fetch
 
     // console.log(isValidUrl(url)); //true
 
-
     // checking if the URL is valid.
     if (!isValidUrl(url)) {
-        throw new Error("Invalid URL: Could not verify URL. Please try again.");
+        // throw new Error("Invalid URL: Could not verify URL. Please try again.");
+        return null;
     }
 
     const aliasCollection = await getCollection(ALIAS_COLLECTION);
