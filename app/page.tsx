@@ -5,13 +5,13 @@ import { AliasProps } from "@/types";
 import { useState } from "react";
 
 export default function Home() {
-  const [alias, setAlias] = useState<AliasProps[]>([]);
+  // const [alias, setAlias] = useState<AliasProps[]>([]);
 
-  function append(newAlias: AliasProps | null) {
-      if (newAlias) {
-          setAlias([newAlias]);
-      }
-  }
+  // function append(newAlias: AliasProps | null) {
+  //     if (newAlias) {
+  //         setAlias([newAlias]);
+  //     }
+  // }
 
   return (
       <div className="font-mono">
@@ -20,11 +20,11 @@ export default function Home() {
           <h2 className="text-2xl font-bold">Shorten a URL:</h2>
           <h6>Enter a long URL to create a shorter, sharable link.</h6><br></br>
         
-          <NewAliasForm append={append}/>
-          
+          <NewAliasForm />
+{/*           
           {alias.map((a) => (
             <AliasPreview key={a.id} alias={a} />
-          ))}
+          ))} */}
         </div>
       </div>
   );

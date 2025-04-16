@@ -3,24 +3,39 @@ import { AliasProps } from "@/types";
 import { Textarea } from "@mui/joy";
 import { Button, TextField } from "@mui/material";
 import { useState } from "react";
+import AliasPreview from "./AliasPreview";
 
-export default function NewAliasForm({
-    append,
-}: {
-append: (newAlias: AliasProps | null) => void;
-}) {
+export default function NewAliasForm() {
     const [url, setUrl] = useState("");
     const [alias, setAlias] = useState("");
+    const [record, setRecord] = useState<AliasProps>()
+    const [message, setMessage] = useState("");
 
     return (
         <form
-            className="w-96 rounded-xl p-4 bg-rose-300"
+            className="w-150 rounded-xl p-4 bg-rose-300 text-pretty"
             onSubmit={async (e) => {
                 e.preventDefault();
-                createNewAlias(url, alias)
-                .then((p) => append(p))
-                .catch((err) => console.error(err));
+                const result =  await createNewAlias(url, alias)
+                if (result === "EMPTY") {
+                    setMessage("Alias cannot be empty. Please try again.")
+                }
+                if (result === "BAD URL") {
+                    setMessage("Invalid URL: Could not verity UR:. Please try again.")
+                }
+                if (result === "EXISTS") {
+                    setMessage("Alias already exists. Please try again.")
+                }
+                else{
+                    setMessage("")
+                }
 
+                if (message === "" && typeof(result) !=="string" ){
+                    setRecord(result)
+                } 
+               
+            
+               
             }}
         >
             <TextField
@@ -43,6 +58,14 @@ append: (newAlias: AliasProps | null) => void;
                     Shorten
                 </button>
             </div>
+
+
+            {
+             (message !== ""  ||  !record )?(<div>{message}</div> ): <AliasPreview alias={record}/>
+
+                
+            }
         </form>
+        
     );
 }

@@ -5,18 +5,18 @@ import { AliasProps } from "@/types";
 export default async function createNewAlias (
     url: string, 
     alias: string,
-): Promise<AliasProps | null> {
+): Promise<AliasProps | string> {
     console.log("creating new post");
-
-
-    // const baseURL = "https://mp-5-pi.vercel.app/";
-    // const shortURL = `${baseURL}${alias}`;
-    // console.log(shortURL);
 
     const p = {
         url: url,
         alias: alias,
     };
+
+    if (alias === "") {
+        // return "Alias cannot be empty. Please try again."
+        return "EMPTY";
+    }
 
     // FROM STACK OVERFLOW: https://stackoverflow.com/questions/74497502/how-to-check-for-a-valid-url-in-javascript
     const isValidUrl = (url: string) => {
@@ -36,7 +36,8 @@ export default async function createNewAlias (
     // checking if the URL is valid.
     if (!isValidUrl(url)) {
         // throw new Error("Invalid URL: Could not verify URL. Please try again.");
-        return null;
+        // return "Invalid URL: Could not verity UR:. Please try again.";
+        return "BAD URL"
     }
 
     const aliasCollection = await getCollection(ALIAS_COLLECTION);
@@ -44,7 +45,9 @@ export default async function createNewAlias (
     // check if the alias already exists
     const aliasExists = await aliasCollection.findOne({alias});
     if (aliasExists) {
-        throw new Error("Alias already exists");
+        // throw new Error("Alias already exists");
+        // return "Alias already exists. Please try again."
+        return "EXISTS"
     }
 
     const res = await aliasCollection.insertOne({ ...p });
