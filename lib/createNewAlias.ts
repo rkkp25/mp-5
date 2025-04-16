@@ -2,7 +2,7 @@
 import getCollection, { ALIAS_COLLECTION } from "@/db";
 import { AliasProps } from "@/types";
 
-export default async function createNewPost (
+export default async function createNewAlias (
     url: string, 
     alias: string, 
 ): Promise<AliasProps> {
@@ -12,6 +12,7 @@ export default async function createNewPost (
         alias: alias,
     };
 
+    // FROM STACK OVERFLOW: https://stackoverflow.com/questions/74497502/how-to-check-for-a-valid-url-in-javascript
     const isValidUrl = (url: string) => {
         var urlPattern = new RegExp('^(https?:\\/\\/)?' + // validate protocol
             '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // validate domain name
@@ -19,7 +20,7 @@ export default async function createNewPost (
             '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // validate port and path
             '(\\?[;&a-z\\d%_.~+=-]*)?' + // validate query string
             '(\\#[-a-z\\d_]*)?$', 'i'); // validate fragment locator
-        return !!urlPattern.test(url);
+        return urlPattern.test(url);
     }
 
     // console.log(isValidUrl(url)); //true

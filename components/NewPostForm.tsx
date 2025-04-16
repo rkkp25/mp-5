@@ -4,7 +4,7 @@ import { Textarea } from "@mui/joy";
 import { Button, TextField } from "@mui/material";
 import { useState } from "react";
 
-export default function NewPostForm({
+export default function NewAliasForm({
     append,
 }: {
 append: (newAlias: AliasProps) => void;
@@ -15,7 +15,7 @@ append: (newAlias: AliasProps) => void;
     return (
         <form
             className="w-96 rounded-xl p-4 bg-rose-300"
-            onSubmit={(e) => {
+            onSubmit={async (e) => {
                 e.preventDefault();
                 createNewAlias(url, alias)
                 .then((p) => append(p))

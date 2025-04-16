@@ -1,6 +1,5 @@
 "use client";
-
-import NewPostForm from "@/components/NewPostForm";
+import NewAliasForm from "@/components/NewPostForm";
 import AliasPreview from "@/components/AliasPreview";
 import { AliasProps } from "@/types";
 import { useState } from "react";
@@ -19,7 +18,7 @@ export default function Home() {
           <h2 className="text-2xl font-bold">Shorten a URL:</h2>
           <h6>Enter a long URL to create a shorter, sharable link.</h6><br></br>
         
-          <NewPostForm append={append}/>
+          <NewAliasForm append={append}/>
           
           {alias.map((a) => (
             <AliasPreview key={a.id} alias={a} />

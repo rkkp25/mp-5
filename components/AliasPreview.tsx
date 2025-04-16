@@ -1,13 +1,7 @@
 import { AliasProps } from "@/types";
 import { useRouter } from 'next/navigation'
 
-
-
 export default function AliasPreview({alias}: {alias: AliasProps }) {
-    // function goToLink(alias: AliasProps) {
-    //     redirect.push('{alias.url}')
-    // }
-
     const router = useRouter()
 
     return (
@@ -16,4 +10,3 @@ export default function AliasPreview({alias}: {alias: AliasProps }) {
         </div>
     );
 }
-
