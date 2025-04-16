@@ -4,12 +4,19 @@ import { AliasProps } from "@/types";
 
 export default async function createNewAlias (
     url: string, 
-    alias: string, 
+    alias: string,
 ): Promise<AliasProps> {
     console.log("creating new post");
+
+
+    const baseURL = "https://mp-5-pi.vercel.app/";
+    const shortURL = `${baseURL}${alias}`;
+    console.log(shortURL);
+
     const p = {
         url: url,
         alias: alias,
+        shortURL: shortURL,
     };
 
     // FROM STACK OVERFLOW: https://stackoverflow.com/questions/74497502/how-to-check-for-a-valid-url-in-javascript
