@@ -20,22 +20,23 @@ export default function NewAliasForm() {
                 if (result === "EMPTY") {
                     setMessage("Alias cannot be empty. Please try again.")
                 }
+                if (result === "BAD RESPONSE") {
+                    setMessage("Invalid URL: Could not verity UR:. Please try again.")
+                }
                 if (result === "BAD URL") {
                     setMessage("Invalid URL: Could not verity UR:. Please try again.")
                 }
                 if (result === "EXISTS") {
                     setMessage("Alias already exists. Please try again.")
                 }
-                else{
+                else if (typeof(result) !== "string") {
                     setMessage("")
+                    setRecord(result)
                 }
 
-                if (message === "" && typeof(result) !=="string" ){
-                    setRecord(result)
-                } 
-               
-            
-               
+                // if (message === "" && typeof(result) !=="string" ){
+                //     setRecord(result)
+                // } 
             }}
         >
             <TextField
